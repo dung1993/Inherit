@@ -21,7 +21,14 @@ public class Test {
         rectangle = new Rectangle(3.5,6.7,"pink",false);
         System.out.println(rectangle);
 
+        Square square = new Square();
+        System.out.println(square);
 
+        square = new Square(2.3);
+        System.out.println(square);
+
+        square = new Square(5.8, "yellow", true);
+        System.out.println(square);
 
     }
 }
