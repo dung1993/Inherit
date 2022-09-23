@@ -40,4 +40,8 @@ public class Point2D {
     public float[] getXY(){
         return new float[]{x,y};
     }
+
+    public String toString(){
+        return "Point X :" + getX() + " Point Y:" + getY() + " Point 2D: " + getXY();
+    }
 }
