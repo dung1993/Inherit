@@ -26,7 +26,13 @@ public class Main {
         machine[0] = new McQueen();
         machine[1] = new Siddele();
         for (int i = 0; i < machine.length; i++) {
-
+            if (machine[i] instanceof McQueen){
+                Runable runable = (McQueen) machine[i];
+                System.out.println(runable.HowToRun());
+            }else {
+                Flyable flyable = (Siddele) machine[i];
+                System.out.println(flyable.HowToFly());
+            }
         }
     }
 }
