@@ -1,4 +1,4 @@
-package HowToComparable;
+package HowToComparableComparator;
 
 public class ComparableCircle extends Circle implements Comparable<ComparableCircle>{
 

@@ -1,4 +1,4 @@
-package HowToComparable;
+package HowToComparableComparator;
 
 import java.util.Arrays;
 

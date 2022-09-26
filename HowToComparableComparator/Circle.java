@@ -1,4 +1,4 @@
-package HowToComparable;
+package HowToComparableComparator;
 
 public class Circle extends Shape{
     private double radius;

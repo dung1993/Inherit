@@ -1,4 +1,4 @@
-package HowToComparable;
+package HowToComparableComparator;
 
 public class Shape {
     private String color = "red";
