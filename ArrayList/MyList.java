@@ -15,15 +15,15 @@ public class MyList<E> {
         elements = new Object[capacity];
     }
 
-    public void add(int i, E e) {
-        if (size > elements.length) {
+    public void add(int index, int value) {
+        if (size >= elements.length) {
             ensureCapa();
         }
-        if (i >= elements.length || i < 0) {
-            System.out.println("Index: " + i + ", Size: " + elements.length);
-        } else {
-            System.arraycopy(elements, i, elements, i + 1, size - i);
-            elements[i] = e;
+        if (index > 0 || index < size) {
+            for (int i = size - 1; i >= index; i--) {
+                elements[i + 1] = elements[i];
+            }
+            elements[index] = value;
             size++;
         }
     }
@@ -33,13 +33,16 @@ public class MyList<E> {
         elements = Arrays.copyOf(elements, newSize);
     }
 
-    public void remove(int i) {
-        if (i >= elements.length || i < 0) {
-            System.out.println("Index: " + i + ", Size: " + elements.length);
-        } else {
-            System.arraycopy(elements, i + 1, elements, i, size - i);
-//            size--;
-            elements[--size] = null;
+
+    public void remove(int index) {
+        if (size >= elements.length) {
+            ensureCapa();
+        }
+        if (index > 0 || index < size) {
+            for (int i = size; i < size - 1; i++) {
+                elements[i] = elements[i + 1];
+            }
+            size--;
         }
     }
 
@@ -77,6 +80,51 @@ public class MyList<E> {
         return indexOf;
     }
 
+    public Object[] copyOf(int from, int to) {
+        Object newArr[] = new Object[size];
+        if (to < size && from >= 0) {
+            for (int i = from; i <= to; i++) {
+                newArr[i] = elements[i];
+            }
+        } else {
+            return null;
+        }
+        return newArr;
+    }
+
+    public void connectOf(MyList<E> list) {
+        for (Object e : list.elements) {
+            add((E) e);
+        }
+    }
+
+    // kiểm tra mảng con
+    public boolean checkChildArray(E[] e) {
+//        Object newArr[] = new Object[size];
+        boolean flag = false;
+        if (e.length <= size) {
+            for (int i = 0; i < size; i++) {
+                if (elements[i] == e[0]) {
+                    int j = 0;
+                    for (; j < e.length; j++) {
+                        if (e[j] != elements[i + j]) {
+                            break;
+                        }
+                    }
+                    if (j == e.length){
+                        flag = true;
+                    }
+                }
+            }
+        }
+        return flag;
+    }
+
+
+    public Object[] getElements() {
+        return elements;
+    }
+
     public void add(E e) {
         if (size >= elements.length) {
             ensureCapa();
@@ -109,5 +157,6 @@ public class MyList<E> {
                 ", elements=" + Arrays.toString(elements) +
                 '}';
     }
+
 }
 
